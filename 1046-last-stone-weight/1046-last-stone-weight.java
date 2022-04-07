@@ -1,22 +1,28 @@
 class Solution {
     public int lastStoneWeight(int[] stones) {
-        
-        List<Integer> stoneList =(LinkedList)Arrays.stream(stones).sorted().boxed().collect(Collectors.toCollection(LinkedList::new));
-        while(stoneList.size() != 1){
-            int max = Collections.max(stoneList);
-            stoneList.remove(stoneList.indexOf(max));
-            int nextMax = Collections.max(stoneList);
-
-            if(nextMax == max){
-                stoneList.remove(stoneList.indexOf(nextMax));
+        Arrays.sort(stones);
+        int count = stones.length-1;
+        while(count!=0)
+        {
+            System.out.println(count);
+            if(stones[stones.length-1]==stones[stones.length-2])
+            {
+                stones[stones.length-1]=0;
+                stones[stones.length-2]=0;
             }else {
-                stoneList.remove(stoneList.indexOf(nextMax));
-                stoneList.add(max - nextMax);
+                stones[stones.length-1]=stones[stones.length-1] - stones[stones.length-2];
+                stones[stones.length-2]=0;
             }
-            if(stoneList.size() == 0)
-                return 0;
+            Arrays.sort(stones);
+            count--;
         }
-        return stoneList.get(0);
-        
+        for(int j: stones)
+        {
+            if(j!=0)
+            {
+                return j;
+            }
+        }
+        return 0;
     }
 }
