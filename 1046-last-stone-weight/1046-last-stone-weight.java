@@ -3,10 +3,8 @@ class Solution {
         
         List<Integer> stoneList =(LinkedList)Arrays.stream(stones).sorted().boxed().collect(Collectors.toCollection(LinkedList::new));
         while(stoneList.size() != 1){
-            System.out.println(stoneList);
             int max = Collections.max(stoneList);
             stoneList.remove(stoneList.indexOf(max));
-             System.out.println(stoneList);
             int nextMax = Collections.max(stoneList);
 
             if(nextMax == max){
