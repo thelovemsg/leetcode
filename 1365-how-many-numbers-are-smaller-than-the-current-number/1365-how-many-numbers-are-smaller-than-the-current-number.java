@@ -41,7 +41,6 @@ class Solution {
         ArrayList<Integer> list = new ArrayList<>();
         
         for(int i = 0; i < arr.length; i ++){
-            System.out.println("arr[i] :: " + arr[i]);
             list.add(arr[i]);
         }
         for(int i=0; i<nums.length; i++){
