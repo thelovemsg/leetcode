@@ -17,20 +17,31 @@ class Solution {
         
 //         return stack.size();
         //사실 배열의 index로 접근하는 것이라서 겹칠일이 없으므로 stack은 사용하지 않아도 된다.ㅠㅠ 
-        int result = 0;
         
-        for(int i = 0; i < nums.length; i++){
-            for(int j = i+1; j < nums.length; j++){
-                if(nums[j] - nums[i] == diff){
-                    for(int k = 0; k < nums.length; k++){
-                        if(nums[k] - nums[j] == diff){
-                            result++;
-                        }
-                    }
-                }
-            }
+        
+        //brutal force => 무차별 공격! 그냥 전부 순회해 버리겠따!
+//         int result = 0;
+//         for(int i = 0; i < nums.length; i++){
+//             for(int j = i+1; j < nums.length; j++){
+//                 if(nums[j] - nums[i] == diff){
+//                     for(int k = 0; k < nums.length; k++){
+//                         if(nums[k] - nums[j] == diff){
+//                             result++;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         return result;
+    
+        int count = 0;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(num - diff) && set.contains(num - diff * 2))
+                count++;
+            
+            set.add(num);
         }
-        
-        return result;
+        return count;
     }
 }
