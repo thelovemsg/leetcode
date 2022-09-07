@@ -10,7 +10,6 @@ class Solution {
                 result += n-1;
             }
 
-            System.out.println("result :: " + result);
         }
         return result;
     }
