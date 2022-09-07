@@ -15,7 +15,6 @@ class Solution {
             result += String.valueOf(head.val);
             head = head.next;
         }
-        System.out.println(result);
         int cal = 0;
         for(int i=0; i<result.length(); i++){
             if(result.charAt(i) != '0'){
