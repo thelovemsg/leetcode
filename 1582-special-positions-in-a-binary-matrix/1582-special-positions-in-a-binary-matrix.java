@@ -2,9 +2,7 @@ class Solution {
     public int numSpecial(int[][] mat) {
         int result = 0;
         int rowLength = mat[0].length;
-        System.out.println("rowLength :: " + rowLength);
         int colLength = mat.length;
-        System.out.println("colLength :: " + colLength);
         for(int col=0; col < colLength; col++) {
             for(int row=0; row < rowLength; row++) {
                 if(mat[col][row] == 1) {
