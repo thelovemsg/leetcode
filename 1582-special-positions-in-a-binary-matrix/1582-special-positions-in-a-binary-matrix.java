@@ -10,9 +10,6 @@ class Solution {
                 if(mat[col][row] == 1) {
                     int rowCnt=0;
                     int colCnt=0;
-                    System.out.println("col :: " + col);
-                    System.out.println("row :: " + row);
-                    System.out.println("---------------");
                     for(int i=0; i<rowLength; i++){
                         if(mat[col][i] == 1){
                             colCnt++;
