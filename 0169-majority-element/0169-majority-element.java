@@ -8,8 +8,9 @@ class Solution {
         int targetValue = -1;        
         int targetKey = 0;    
         for(Integer key : map.keySet()) {
-            if(targetValue < map.get(key)){
-                targetValue = map.get(key);
+            int value = map.get(key);
+            if(targetValue < value){
+                targetValue = value;
                 targetKey = key;
             }
         }
