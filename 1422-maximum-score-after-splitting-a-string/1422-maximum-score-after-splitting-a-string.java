@@ -1,29 +1,15 @@
 class Solution {
     public int maxScore(String s) {
-        int idx = 1;
-        int result = -1;
-        while( idx < s.length()) {
-            String left = s.substring(0,idx);
-            String right = s.substring(idx);
-            int zeroCnt = 0;
-            int oneCnt = 0;
-            for(int i=0; i<left.length(); i++) {
-                if(left.charAt(i) - '0' == 0) {
-                    zeroCnt++;
-                }
-            }
-            
-            for(int i=0; i<right.length(); i++) {
-                if(right.charAt(i) - '0' == 1) {
-                    oneCnt++;
-                }
-            }
-            
-            result = Math.max(zeroCnt + oneCnt, result);
-            idx++;
+        int maxScore = 0;
+        int countZerosLeft = 0;
+        int countOnesRight = (int) s.chars().filter(ch -> ch == '1').count();
+        
+        for (int i=0; i < s.length()-1; i++) {
+            countZerosLeft += s.charAt(i) == '0' ? 1 : 0;
+            countOnesRight -= s.charAt(i) == '1' ? 1 : 0;
+            maxScore = Math.max(maxScore, countZerosLeft + countOnesRight);
         }
         
-        return result;
-        
+        return maxScore;
     }
 }
