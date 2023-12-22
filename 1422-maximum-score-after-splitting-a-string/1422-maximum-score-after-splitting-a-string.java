@@ -1,29 +1,22 @@
 class Solution {
     public int maxScore(String s) {
-        int idx = 1;
-        int result = -1;
-        while( idx < s.length()) {
-            String left = s.substring(0,idx);
-            String right = s.substring(idx);
-            int zeroCnt = 0;
-            int oneCnt = 0;
-            for(int i=0; i<left.length(); i++) {
-                if(left.charAt(i) == '0') {
-                    zeroCnt++;
-                }
+        int[] oneCountFromRight = new int[s.length()];
+        int cnt = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '1') {
+                cnt++;
             }
-            
-            for(int i=0; i<right.length(); i++) {
-                if(right.charAt(i) == '1') {
-                    oneCnt++;
-                }
-            }
-            
-            result = Math.max(zeroCnt + oneCnt, result);
-            idx++;
+            oneCountFromRight[i] = cnt;
         }
-        
-        return result;
-        
+        int zeroCnt = 0;
+        int max = 0;
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == '0') {
+                zeroCnt++;
+            }
+            int score = zeroCnt + oneCountFromRight[i + 1];
+            max = Math.max(max, score);
+        }
+        return max;
     }
 }
