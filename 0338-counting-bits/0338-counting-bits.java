@@ -2,7 +2,6 @@ class Solution {
     public int[] countBits(int n) {
         int[] result = new int[n+1]; 
         for(int i=1; i<=n; i++) {
-            System.out.println("i :: " + i);
             int target = i;
             int cnt = 0;
             while(target > 0){
