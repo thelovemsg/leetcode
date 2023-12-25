@@ -18,7 +18,6 @@ class Solution {
         
         for(int i=2; i<=n; i++) {
             arr[i] = arr[i-2] + arr[i-1];
-            System.out.println("arr[i] :: " + arr[i]);
         }
         
         return arr[n];
