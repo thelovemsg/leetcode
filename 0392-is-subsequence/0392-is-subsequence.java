@@ -5,8 +5,7 @@ class Solution {
         
         int idx = 0;
         for(int j = 0; j<t.length(); j++) {
-            char target = s.charAt(idx);
-            if(target == t.charAt(j)){
+            if(s.charAt(idx) == t.charAt(j)){
                 idx++;
             }               
             
