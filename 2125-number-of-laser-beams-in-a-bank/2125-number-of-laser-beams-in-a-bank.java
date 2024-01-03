@@ -1,32 +1,23 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        List<Long> collect = Arrays.stream(bank).map(s -> s.chars().filter(c -> c == '1').count())
-            .collect(Collectors.toList());
-        
-        int i = 0;
-        int j = 1;
+        int prev = 0;
         int result = 0;
-        int length = collect.size();
-        while(i < length && j < length) {
-            if(i == j)  {
-                j++;
-                continue;
+        for(int i=0; i<bank.length; i++) {
+            String s = bank[i];
+            int cnt = 0;
+            for(int j=0; j<s.length(); j++) {
+                char target = s.charAt(j);
+                if(target == '1')
+                    cnt++;
             }
-                
-            int prev = collect.get(i).intValue();
-            if(prev == 0){
-                i++;
+            if(cnt == 0)
                 continue;
-            }
-                
-            int curr = collect.get(j).intValue();
-            if(curr == 0){
-                j++;
-                continue;
-            }
-            result += prev * curr;
-            i++;
-            j++;
+
+            result += prev * cnt;
+            prev = cnt;
+            // System.out.println("prev :: " + prev);
+            // System.out.println("result :: " + result);
+            
         }
         
         return result;
