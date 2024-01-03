@@ -6,8 +6,7 @@ class Solution {
             String s = bank[i];
             int cnt = 0;
             for(int j=0; j<s.length(); j++) {
-                char target = s.charAt(j);
-                if(target == '1')
+                if(s.charAt(j) == '1')
                     cnt++;
             }
             if(cnt == 0)
