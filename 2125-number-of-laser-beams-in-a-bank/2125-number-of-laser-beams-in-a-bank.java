@@ -15,9 +15,6 @@ class Solution {
 
             result += prev * cnt;
             prev = cnt;
-            // System.out.println("prev :: " + prev);
-            // System.out.println("result :: " + result);
-            
         }
         
         return result;
