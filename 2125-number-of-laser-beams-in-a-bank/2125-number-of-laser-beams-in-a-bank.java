@@ -6,7 +6,8 @@ class Solution {
         int i = 0;
         int j = 1;
         int result = 0;
-        while(i < collect.size() && j < collect.size()) {
+        int length = collect.size();
+        while(i < length && j < length) {
             if(i == j)  {
                 j++;
                 continue;
