@@ -15,13 +15,9 @@ class Solution {
         while (iterator.hasNext()) {
             Map.Entry<Integer, Integer> entry = iterator.next();
             Integer value = entry.getValue();
-            System.out.println("key :: " + entry.getKey());
-            System.out.println("value :: " + value);
             if(value >= 5 ){
                 int quotient = value / 3;
                 int remainder = value % 3;
-                System.out.println("quotient :: " + quotient);
-                System.out.println("remainder :: " + remainder);
                 result += quotient;
                 if(remainder == 1 || remainder == 2) {
                     result++;    
