@@ -17,7 +17,7 @@ class Solution {
             int quotient = value / 3;
             int remainder = value % 3;
             result += quotient;
-            if(remainder == 1 || remainder == 2) {
+            if(remainder != 0) {
                 result++;    
             }
         }
