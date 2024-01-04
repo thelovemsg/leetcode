@@ -27,8 +27,6 @@ class Solution {
             } else if(value == 2 || value == 3) {
                 result++;
             }
-            System.out.println("result :: " + result);
-            System.out.println("=======================");
         }
         
         return result;
