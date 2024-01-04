@@ -6,15 +6,14 @@ class Solution {
             map.put(nums[i], map.getOrDefault(nums[i],0) + 1);
         }
         
-        boolean isOneExist = map.values().stream().anyMatch(el -> el.intValue() == 1);
-        if(isOneExist)
-            return -1;
-            
         Iterator<Map.Entry<Integer, Integer>> iterator = map.entrySet().iterator();
         
         while (iterator.hasNext()) {
             Map.Entry<Integer, Integer> entry = iterator.next();
             Integer value = entry.getValue();
+            if(value == 1)
+                return -1;
+            
             if(value >= 5 ){
                 int quotient = value / 3;
                 int remainder = value % 3;
