@@ -14,17 +14,11 @@ class Solution {
             if(value == 1)
                 return -1;
             
-            if(value >= 5 ){
-                int quotient = value / 3;
-                int remainder = value % 3;
-                result += quotient;
-                if(remainder == 1 || remainder == 2) {
-                    result++;    
-                }
-            } else if(value == 4) {
-                result += 2;
-            } else if(value == 2 || value == 3) {
-                result++;
+            int quotient = value / 3;
+            int remainder = value % 3;
+            result += quotient;
+            if(remainder == 1 || remainder == 2) {
+                result++;    
             }
         }
         
