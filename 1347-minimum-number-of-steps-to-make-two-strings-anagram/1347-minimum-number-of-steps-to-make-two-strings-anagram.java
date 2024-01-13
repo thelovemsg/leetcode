@@ -13,8 +13,6 @@ class Solution {
         int result = 0;
         for(int i=0; i<26; i++) {
             int target = arr[i];
-            System.out.println("target :: " + target);
-            
             if(target > 0){
                 result += target*2;
             }else {
