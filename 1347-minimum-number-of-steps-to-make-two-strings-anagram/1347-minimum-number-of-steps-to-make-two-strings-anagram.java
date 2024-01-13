@@ -14,8 +14,6 @@ class Solution {
         for(int i=0; i<26; i++) {
             int target = arr[i];
             if(target > 0){
-                result += target*2;
-            }else {
                 result += target;
             }
         }
