@@ -7,7 +7,6 @@ class Solution {
         
         int[] arr1 = new int[26];
         int[] arr2 = new int[26];
-        Map<Integer, Integer> map = new HashMap<>();
         
         for(int i=0; i<length1; i++) {
             arr1[word1.charAt(i)-'a']++;
@@ -15,12 +14,8 @@ class Solution {
         }
 
         for(int i=0; i<arr1.length; i++) {
-            if(arr1[i] != 0 && arr2[i] == 0)
+            if(arr1[i] != 0 && arr2[i] == 0 || arr1[i] == 0 && arr2[i] != 0)
                 return false;
-            
-            if(arr1[i] == 0 && arr2[i] != 0)
-                return false;
-            
         }
         
         Arrays.sort(arr1);
