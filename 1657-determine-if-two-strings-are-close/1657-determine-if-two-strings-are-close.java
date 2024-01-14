@@ -2,7 +2,7 @@ class Solution {
     public boolean closeStrings(String word1, String word2) {
         int length1 = word1.length();
         int length2 = word2.length();
-        if(length1 < length2)
+        if(length1 != length2)
             return false;
         
         int[] arr1 = new int[26];
@@ -23,24 +23,10 @@ class Solution {
             
         }
         
-        for(int i=0; i<arr1.length; i++) {
-            int target = arr1[i];
-            map.put(target, map.getOrDefault(target, 0) + 1);
-        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
         
-        
-        for(int i=0; i<arr2.length; i++) {
-            int target = arr2[i];
-            map.put(target, map.getOrDefault(target, 0) - 1);            
-        }
-        
-        for (Integer value : map.values()) {
-            if (value < 0) {
-                return false;
-            }
-        }
-
-        return true;
+        return Arrays.equals(arr1, arr2);
         
     }
 }
