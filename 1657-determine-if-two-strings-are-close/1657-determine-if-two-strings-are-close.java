@@ -28,7 +28,6 @@ class Solution {
             map.put(target, map.getOrDefault(target, 0) + 1);
         }
         
-        System.out.println("=====================");
         
         for(int i=0; i<arr2.length; i++) {
             int target = arr2[i];
