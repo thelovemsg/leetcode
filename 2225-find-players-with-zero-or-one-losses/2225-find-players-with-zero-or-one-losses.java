@@ -1,32 +1,24 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
-        List<Integer> losers = new ArrayList<>();
-        
-        Set<Integer> winnerSet = new HashSet<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i=0; i<matches.length; i++) {
-            int win = matches[i][0];
-            int lose = matches[i][1];
-            map.put(lose, map.getOrDefault(lose, 0) + 1);
-            winnerSet.add(win);
+        Map<Integer, Integer> playerLosses = new HashMap<>();
+
+        for (int[] match : matches) {
+            playerLosses.put(match[0], playerLosses.getOrDefault(match[0], 0));  // 승자에 대한 패배 횟수 초기화
+            playerLosses.put(match[1], playerLosses.getOrDefault(match[1], 0) + 1);  // 패자의 패배 횟수 증가
         }
-        
-        for (Integer key : map.keySet()) {
-            int value = map.get(key);
-            if(value == 1) {
-                losers.add(key);
-            }
-            
-            if(winnerSet.contains(key)){
-                winnerSet.remove(key);
-            }
-        }
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> winnerList = new ArrayList(winnerSet);
-        Collections.sort(winnerList);
-        Collections.sort(losers);
-        result.add(winnerList);
-        result.add(losers);
-        return result;
+
+        List<Integer> noLosses = playerLosses.entrySet().stream()
+                .filter(entry -> entry.getValue() == 0)
+                .map(Map.Entry::getKey)
+                .sorted()
+                .collect(Collectors.toList());
+
+        List<Integer> oneLoss = playerLosses.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .sorted()
+                .collect(Collectors.toList());
+
+        return Arrays.asList(noLosses, oneLoss);
     }
 }
