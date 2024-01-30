@@ -17,7 +17,12 @@ class Solution {
     }
     
     public static boolean isInteger(String str) {
-        return str.matches("-?\\d+");
+        try {
+            Integer.parseInt(str);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
     
     public static int calOperation(Stack<Integer> stack, String token) {
