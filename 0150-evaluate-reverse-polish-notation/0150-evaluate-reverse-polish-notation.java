@@ -29,20 +29,19 @@ class Solution {
         int result = 0;
         int last = stack.pop();
         int prev = stack.pop();
-        if(token.equals("+")) {
-            result = last + prev;
-        }
-        
-        if(token.equals("-")) {
-            result = prev - last;
-        }
-        
-        if(token.equals("/")) {
-            result = prev / last;
-        }
-        
-        if(token.equals("*")) {
-            result = prev * last;
+        switch (token.charAt(0)) {
+            case '+':
+                result = prev + last;
+                break;
+            case '-':
+                result = prev - last;
+                break;
+            case '*':
+                result = prev * last;
+                break;
+            case '/':
+                result = prev / last;
+                break;
         }
         
         stack.push(result);
