@@ -44,7 +44,6 @@ class Solution {
             result = prev * last;
         }
         
-        System.out.println("result :: " + result);
         stack.push(result);
         
         return result;
