@@ -27,25 +27,21 @@ class Solution {
     
     public static int calOperation(Stack<Integer> stack, String token) {
         int result = 0;
+        int last = stack.pop();
+        int prev = stack.pop();
         if(token.equals("+")) {
-            result = stack.pop() + stack.pop();
+            result = last + prev;
         }
         
         if(token.equals("-")) {
-            int last = stack.pop();
-            int prev = stack.pop();
             result = prev - last;
         }
         
         if(token.equals("/")) {
-            int last = stack.pop();
-            int prev = stack.pop();
             result = prev / last;
         }
         
         if(token.equals("*")) {
-            int last = stack.pop();
-            int prev = stack.pop();
             result = prev * last;
         }
         
