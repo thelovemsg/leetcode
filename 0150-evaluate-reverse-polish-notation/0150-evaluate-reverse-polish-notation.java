@@ -6,9 +6,9 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         int result = 0;
         for(String token : tokens) {
-            if(isInteger(token)) {
+            try {
                 stack.push(Integer.parseInt(token));
-            } else {
+            } catch(NumberFormatException e) {
                 result = calOperation(stack, token);
             }
         }
@@ -16,14 +16,6 @@ class Solution {
         return result;
     }
     
-    public static boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
     
     public static int calOperation(Stack<Integer> stack, String token) {
         int result = 0;
