@@ -3,7 +3,6 @@ class Solution {
         Arrays.sort(nums);
         int idx = 0;
         int length = nums.length;
-        System.out.println("length :: " + length);
         int[][] result = new int[length/3][3];
         for (int i=0; i<length/3; i++) {
             int min = nums[i*3];
