@@ -35,9 +35,6 @@ class Solution {
             this.cnt = cnt;
         }
         
-        private String print() {
-            return "c :: " + c + " / cnt : " + cnt;
-        }
         
         public int getCnt() {
             return cnt;
