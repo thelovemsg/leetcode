@@ -3,7 +3,7 @@ class Solution {
         HashMap<Character, Integer> mp = new HashMap<>();
 
         for (char a : s.toCharArray()) {
-            mp.put(a, mp.getOrDefault(a, 0) + 1);
+            mp.merge(a, 1, Integer::sum);
         }
 
         for (int i = 0; i < s.length(); i++) {
