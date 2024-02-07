@@ -1,54 +1,25 @@
 class Solution {
     public String frequencySort(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        for(int i=0; i<s.length(); i++) {
-            char c = s.charAt(i);
-            map.merge(c, 1, Integer::sum);
+        Map<Character, Integer> hm = new HashMap<>();
+        
+        for (char c : s.toCharArray()) {
+            hm.merge(c, 1, Integer::sum);
         }
         
-        List<Bunch> list = new ArrayList<>();
+        PriorityQueue<Map.Entry<Character, Integer>> pq = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
         
-        for(char c : map.keySet()) {
-            list.add(new Bunch(c,map.get(c)));
-        }
-        
-        Collections.sort(list);
+        pq.addAll(hm.entrySet());
         
         StringBuilder sb = new StringBuilder();
-        for(Bunch b : list) {
-            int cnt = b.getCnt();
-            char c = b.getC();
-            for(int i=0; i<cnt; i++) {
-                sb.append(b.getC());
-            }
+        
+        while(!pq.isEmpty()) { 
+            Map.Entry<Character, Integer> entry = pq.poll();
+            sb.append(String.valueOf(entry.getKey()).repeat(entry.getValue()));
         }
         
         return sb.toString();
-        
+         
     }
-    
-    public static class Bunch implements Comparable<Bunch>{
-        private char c;
-        private int cnt;
-        public Bunch(char c, int cnt) {
-            this.c = c;
-            this.cnt = cnt;
-        }
-        
-        
-        public int getCnt() {
-            return cnt;
-        }
-        
-        public char getC() {
-            return c;
-        }
-        
-        
-        @Override
-        public int compareTo(Bunch b) {
-            return b.getCnt() - this.cnt;
-        }
-    }
+
     
 }
