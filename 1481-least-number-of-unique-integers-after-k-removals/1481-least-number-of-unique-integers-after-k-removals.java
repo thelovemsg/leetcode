@@ -1,64 +1,25 @@
 class Solution {
     public int findLeastNumOfUniqueInts(int[] arr, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for(Integer num : arr) {
-            map.merge(num, 1, Integer::sum);
+        Map<Integer, Integer> mp = new HashMap<>();
+        for (int a : arr) mp.put(a, mp.getOrDefault(a, 0) + 1);
+        
+        List<Integer> v = new ArrayList<>();
+        int cnt = 0;
+        for (int a : mp.values()) {
+            v.add(a);
         }
         
-        List<KeyValue> list = new ArrayList<>();
-        
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            list.add(new KeyValue(entry.getKey(), entry.getValue()));
-        }
-                     
-        Collections.sort(list);
-        for(int i=0; i<list.size(); i++) {
-            KeyValue kv = list.get(i);
-            System.out.println(kv.getValue());
-        }
-                     
-        for(KeyValue kv : list) {
-            int value = kv.getValue();
-            while(k > 0 && value > 0){
-                k--;
-                kv.setValue(--value);
+        Collections.sort(v);
+        for (int i = 0; i < v.size(); i++) {
+            if (k > v.get(i)) {
+                k -= v.get(i);
+                v.set(i, 0);
+            } else {
+                v.set(i, v.get(i) - k);
+                k = 0;
             }
-            
-            if(k == 0)
-                break;
+            if (v.get(i) != 0) cnt++;
         }
-        
-        for(int i=0; i<list.size(); i++) {
-            KeyValue kv = list.get(i);
-        }
-        
-        return (int) list.stream().filter(el -> el.getValue()!=0).count();
-        
-    }
-    
-    public static class KeyValue implements Comparable<KeyValue> {
-        private Integer key;
-        private Integer value;
-    
-        public KeyValue(Integer key, Integer value) {
-            this.key = key;
-            this.value = value;
-        }
-        
-        public int compareTo(KeyValue kv) {
-            return this.getValue() - kv.getValue();
-        }
-        
-        public Integer getValue() {
-            return value;
-        }
-        
-        public Integer getKey() {
-            return key;
-        }
-        
-        public void setValue(Integer value) {
-            this.value = value;
-        }
+        return cnt;
     }
 }
