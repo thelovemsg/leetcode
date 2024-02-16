@@ -30,7 +30,6 @@ class Solution {
         
         for(int i=0; i<list.size(); i++) {
             KeyValue kv = list.get(i);
-            System.out.println(kv.getValue());
         }
         
         return (int) list.stream().filter(el -> el.getValue()!=0).count();
