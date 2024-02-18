@@ -2,38 +2,36 @@ class Solution {
     public String[] findRelativeRanks(int[] score) {
         String[] result = new String[score.length];
         
-        Map<Integer, Integer> map = new HashMap<>();
-        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(
-                (Comparator<Map.Entry<Integer, Integer>>) (e1, e2) -> e2.getValue().compareTo(e1.getValue())
-        );    
+        // 점수를 기준으로 내림차순 정렬하는 PriorityQueue 생성
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
         
-        for(int i=0; i<score.length; i++) {
-            map.put(i, score[i]);
+        // 우선순위 큐에 모든 점수 추가
+        for (int s : score) {
+            queue.add(s);
         }
         
-        queue.addAll(map.entrySet());
-        
-        int idx = 0;
+        // 점수와 순위 매핑
+        Map<Integer, String> rankMap = new HashMap<>();
+        int rank = 1;
         while (!queue.isEmpty()) {
-            Map.Entry<Integer, Integer> entry = queue.poll();
-            int key = entry.getKey();
-            switch(idx) {
-                case 0 :
-                    result[key] = "Gold Medal";
-                    break;
-                case 1 :
-                    result[key] = "Silver Medal";
-                    break;
-                case 2 :
-                    result[key] = "Bronze Medal";
-                    break;
-                default :
-                    result[key] = (idx+1) + "";        
+            int s = queue.poll();
+            if (rank == 1) {
+                rankMap.put(s, "Gold Medal");
+            } else if (rank == 2) {
+                rankMap.put(s, "Silver Medal");
+            } else if (rank == 3) {
+                rankMap.put(s, "Bronze Medal");
+            } else {
+                rankMap.put(s, Integer.toString(rank));
             }
-            idx++;
+            rank++;
+        }
+        
+        // 결과 배열에 순위 할당
+        for (int i = 0; i < score.length; i++) {
+            result[i] = rankMap.get(score[i]);
         }
         
         return result;
-        
     }
 }
