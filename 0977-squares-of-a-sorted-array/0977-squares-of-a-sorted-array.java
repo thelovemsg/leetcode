@@ -1,10 +1,21 @@
 class Solution {
     public int[] sortedSquares(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = nums[i] * nums[i]; // 각 요소를 제곱
+        int n = nums.length;
+        int[] result = new int[n];
+        int left = 0;
+        int right = n - 1;
+        int index = n - 1;
+        
+        while(left <= right) {
+            if (Math.abs(nums[left]) > Math.abs(nums[right])){
+                result[index--] = nums[left] * nums[left];
+                left++;
+            } else {
+                result[index--] = nums[right] * nums[right];
+                right--;
+            }
         }
-
-        Arrays.sort(nums); // 배열 정렬
-        return nums; // 정렬된 배열 반환
+        
+        return result;
     }
 }
