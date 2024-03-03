@@ -31,8 +31,6 @@ class Solution {
         
         prev.next = temp.next;
         
-        temp = null;
-        
         return head;
     }
 }
