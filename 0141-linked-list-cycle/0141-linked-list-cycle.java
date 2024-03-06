@@ -23,15 +23,14 @@ public class Solution {
         
         while(first != null && second != null) {
             first = first.next;
-            if(first == null)
-                return false;
             second = second.next;
-            if(second == null)
+            if(first == null || second == null)
                 return false;
             second = second.next;
             
             if(second == null)
                 return false;
+            
             if(first == second)
                 return true;
         }
